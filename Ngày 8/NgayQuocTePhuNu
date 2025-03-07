@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày 8/3</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .message {
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out, pulse 3s infinite;
+        }
+        .wishes {
+            margin-top: 20px;
+            color: white;
+            font-size: 1.8em;
+            font-style: italic;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .wishes-list {
+            margin-top: 20px;
+            color: white;
+            font-size: 1.4em;
+            font-style: italic;
+            animation: fadeIn 4s ease-in-out;
+        }
+        .flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('https://cdn-icons-png.flaticon.com/512/628/628283.png') no-repeat center/cover;
+            opacity: 0.8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .heart {
+            position: absolute;
+            color: white;
+            font-size: 2em;
+            animation: float 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">💖 Chúc Mừng Ngày Quốc Tế Phụ Nữ 8/3! 💐</div>
+    <div class="wishes">Chúc bạn luôn xinh đẹp, hạnh phúc và tràn đầy yêu thương! 🌸</div>
+    <div class="wishes-list">
+        <p>💐 Chúc bạn luôn rạng rỡ như những bông hoa! 🌼</p>
+        <p>💕 Chúc bạn có thật nhiều niềm vui và yêu thương! 💖</p>
+        <p>🌷 Hãy luôn mạnh mẽ, tự tin và thành công! 🌟</p>
+    </div>
+    <script>
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            document.body.appendChild(flower);
+            
+            let fallSpeed = Math.random() * 5 + 2;
+            let rotation = Math.random() * 360;
+            flower.style.transform = `rotate(${rotation}deg)`;
+            
+            let animation = flower.animate([
+                { transform: `translateY(0px) rotate(${rotation}deg)`, opacity: 1 },
+                { transform: `translateY(${window.innerHeight}px) rotate(${rotation + 180}deg)`, opacity: 0 }
+            ], {
+                duration: fallSpeed * 1000,
+                easing: "linear"
+            });
+            
+            animation.onfinish = () => flower.remove();
+        }
+        
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = Math.random() * window.innerHeight + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+        
+        setInterval(createFlower, 300);
+        setInterval(createHeart, 1000);
+    </script>
+</body>
+</html>
